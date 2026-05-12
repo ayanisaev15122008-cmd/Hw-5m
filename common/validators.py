@@ -1,7 +1,8 @@
 ﻿from django.core.exceptions import ValidationError
 from datetime import date
-def validate_age(birthdate):
+
+def check_birthday(value):
     today = date.today()
-    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
     if age < 18:
-        raise ValidationError('Возраст должен быть не менее 18 лет.')
+        raise ValidationError("Тебе нет 18 лет, доступ запрещен!")
